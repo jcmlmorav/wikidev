@@ -11,6 +11,15 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/',                 'FrontController@overview')->name('overview');
+Route::get('/entrada',          'FrontController@post');
+Route::get('/categoria',        'FrontController@category');
+Route::get('/acceder',          'FrontController@login')->name('login')->middleware('guest');
+Route::get('/registro',         'FrontController@register')->name('register')->middleware('guest');
+Route::get('/recuperar-cuenta', 'FrontController@passwordRecovery')->name('passwordRecovery')->middleware('guest');
+Route::get('/cerrar-sesion',    'FrontController@logout')->name('logout')->middleware('user')->middleware('user');
+Route::get('/perfil',           'FrontController@profile')->name('profile')->middleware('user')->middleware('user');
+
+Route::post('/register-user',   'DataController@registerUser')->name('registerUser');
+Route::post('/login-user',      'DataController@loginUser')->name('loginUser');
+Route::post('/update-user',     'DataController@updateUser')->name('updateUser')->middleware('user');
