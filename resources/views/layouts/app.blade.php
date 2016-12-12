@@ -17,7 +17,7 @@
                 <div class="nav-wrapper">
                   <a href="{{ URL::route('overview') }}" class="brand-logo"><i class="material-icons">code</i>WikiDev</a>
                   <ul id="nav-mobile" class="right hide-on-med-and-down">
-                    <li><a href="#">Crear entrada</a></li>
+                    <li><a href="{{ URL::route('createPost') }}">Crear entrada</a></li>
                     @if (Auth::check())
                       <li><a href="{{ URL::route('profile') }}">Perfil</a></li>
                       <li><a href="{{ URL::route('logout') }}">Cerrar sesión</a></li>

@@ -17,6 +17,11 @@ class FrontController extends Controller {
     return view('post');
   }
 
+  public function createPost()
+  {
+      return view('create-post');
+  }
+
   public function category()
   {
     return view('category');
