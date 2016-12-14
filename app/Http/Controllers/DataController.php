@@ -18,7 +18,15 @@ class DataController extends Controller {
     $user->password = Hash::make($request->password);
     $user->role     = 2;
     $user->save();
-    echo $user->id;
+    if($user) {
+        if(Auth::attempt(['email' => $user->email, 'password' => $request->password])) {
+          return redirect()->route('profile');
+        } else {
+          return redirect()->route('login')->with('status', 'Inicia sesión con tu correo electrónico y contraseña');
+        }
+    } else {
+        return redirect()->route('register')->with('status', 'Ha ocurrido un error al crear el usuario, intenta nuevamente');
+    }
   }
 
   public function loginUser(Request $request)
@@ -64,7 +72,11 @@ class DataController extends Controller {
         return redirect()->route('profile')->with('status', 'No se pudo actualizar la información. Intentelo nuevamente');
       }
     }
+  }
 
+  public function registerPost(Request $request)
+  {
+    var_dump($request);
   }
 
 }
