@@ -3,6 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\User;
+use App\Post;
+use App\PostCategory;
+use App\UserPost;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
@@ -76,7 +79,23 @@ class DataController extends Controller {
 
   public function registerPost(Request $request)
   {
-    var_dump($request);
+    $post = new Post;
+    $post->title = $request->title;
+    $post->save();
+    $post_category = new PostCategory;
+    $post_category->post = $post->id;
+    $post_category->category = $request->category;
+    $post_category->save();
+    $user_post = new UserPost;
+    $user_post->content = $request->content;
+    if($request->file('thumbnail')->isValid()) {
+      $request->thumbnail->move(public_path('photos'), 'post_'. $post->id . '.' . $request->thumbnail->getClientOriginalExtension());
+      $user_post->thumbnail = url('/photos') . '/post_' . $post->id . '.' . $request->thumbnail->getClientOriginalExtension();
+    }
+    $user_post->user = Auth::id();
+    $user_post->post = $post->id;
+    $user_post->save();
+    return redirect()->route('overview');
   }
 
 }

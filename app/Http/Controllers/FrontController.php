@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Category;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
 
@@ -19,7 +20,10 @@ class FrontController extends Controller {
 
   public function createPost()
   {
-      return view('create-post');
+      $categories = Category::get();
+      return view('create-post', [
+          'categories' => $categories
+      ]);
   }
 
   public function category()

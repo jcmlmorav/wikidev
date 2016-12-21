@@ -1,0 +1,1 @@
+{"version":3,"sources":["_custom.scss"],"names":[],"mappings":"AAAA;EACI,eAAe;EACf,yBAAyB;EACzB,iBAAiB;CACpB","file":"app.css","sourcesContent":["img.profile-image {\n    display: block;\n    margin: 0 auto 15px auto;\n    max-width: 200px;\n}\n"]}

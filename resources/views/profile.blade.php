@@ -12,7 +12,7 @@
           </div>
         @endif
         <div class="file-field input-field col s12 m8 offset-m2 l8 offset-l2">
-          <img src="{{ $photo }}" alt="" />
+          <img class="profile-image" src="{{ $photo }}" alt="" />
           <div class="clearfix"></div>
           <div class="btn light-blue darken-2">
             <span>Cambiar imagen</span>
